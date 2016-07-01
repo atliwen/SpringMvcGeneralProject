@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edi.manage.mapper.EdiUserMapper" >
+  <resultMap id="BaseResultMap" type="com.edi.manage.pojo.EdiUser" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="xid" property="xid" jdbcType="INTEGER" />
+    <result column="DataType" property="datatype" jdbcType="VARCHAR" />
+    <result column="ClientFlag" property="clientflag" jdbcType="VARCHAR" />
+    <result column="VerifySeed" property="verifyseed" jdbcType="VARCHAR" />
+    <result column="DataFlag" property="dataflag" jdbcType="VARCHAR" />
+    <result column="OrderType" property="ordertype" jdbcType="INTEGER" />
+    <result column="UpdateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="RecordTime" property="recordtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+</mapper>
