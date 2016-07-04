@@ -9,6 +9,7 @@ import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
@@ -36,7 +37,7 @@ import com.alibaba.rocketmq.common.message.Message;
 * @author 李文
 * @date   2016年5月18日 下午3:29:31 
 */
-
+@Component
 public class MqProducer
 {
 	DefaultMQProducer producer = null;
