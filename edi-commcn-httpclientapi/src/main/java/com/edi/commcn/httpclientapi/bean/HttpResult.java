@@ -1,4 +1,4 @@
-package edi.commcn.httpclientapi.bean;
+package com.edi.commcn.httpclientapi.bean;
 
 /**
  * 发起httpclient请求，返回的对象

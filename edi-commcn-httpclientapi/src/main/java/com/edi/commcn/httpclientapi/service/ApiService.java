@@ -1,4 +1,4 @@
-package edi.commcn.httpclientapi.service;
+package com.edi.commcn.httpclientapi.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edi.commcn.httpclientapi.bean.HttpResult;
+import com.edi.commcn.httpclientapi.bean.HttpResult;
 
 @Service
 public class ApiService
