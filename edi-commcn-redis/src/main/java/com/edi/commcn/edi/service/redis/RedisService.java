@@ -11,7 +11,7 @@ import redis.clients.jedis.ShardedJedisPool;
 * <p>@Description: Resdis API  </p>
 * <p>Company:  </p>
 * @author 李文
-* @date   2016年6月21日 上午10:56:06 
+* @date   2016年7月01日 上午10:56:06 
 */
 @Service
 public class RedisService
