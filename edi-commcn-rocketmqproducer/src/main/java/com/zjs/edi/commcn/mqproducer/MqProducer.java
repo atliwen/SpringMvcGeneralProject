@@ -16,7 +16,7 @@ import com.alibaba.rocketmq.client.producer.SendResult;
 import com.alibaba.rocketmq.client.producer.SendStatus;
 import com.alibaba.rocketmq.common.message.Message;
 
-/**
+/** 
 * <p>Title: MqProducer </p>
 * <p>@Description: 发送MQ 类  
 * 		NamesrvAddr   
