@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.edi.manage.comtroller.base.BaseController;
+import com.edi.manage.controller.base.BaseController;
 import com.edi.manage.pojo.EdiUser;
 import com.edi.manage.service.EdiUserService;
 
