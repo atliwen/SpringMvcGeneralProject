@@ -29,6 +29,8 @@
 		<jedis.version>2.6.0</jedis.version>
 		<rocketmq-client.version>3.2.6</rocketmq-client.version>
 		<rocketmq-all.version>3.2.6</rocketmq-all.version>
+		<github.pagehelper.version>3.4.2</github.pagehelper.version>
+		<github.jsqlparser.version>0.9.4</github.jsqlparser.version>
 
 	</properties>
 
@@ -86,14 +88,15 @@
 			<dependency>
 				<groupId>com.github.pagehelper</groupId>
 				<artifactId>pagehelper</artifactId>
-				<version>3.4.2</version>
+				<version>${github.pagehelper.version}</version>
 
 			</dependency>
 			<dependency>
 				<groupId>com.github.jsqlparser</groupId>
 				<artifactId>jsqlparser</artifactId>
-				<version>0.9.4</version>
+				<version>${github.jsqlparser.version}</version>
 			</dependency>
+			 
 
 			<!-- MySql -->
 			<dependency>

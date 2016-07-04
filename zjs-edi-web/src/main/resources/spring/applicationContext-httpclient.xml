@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 声明一个httpclient的连接池管理器 -->
+	<bean id="clientConnectionManager"
+		class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+		<!-- 设置最大连接数 -->
+		<property name="maxTotal" value="${httpclient.maxTotal}" />
+		<!-- 设置每个主机地址的并发数 -->
+		<property name="defaultMaxPerRoute" value="${httpclient.defaultMaxPerRoute}" />
+	</bean>
+
+	<!-- 创建clientBuilder，用来创建httpclient -->
+	<bean id="clientBuilder" class="org.apache.http.impl.client.HttpClientBuilder">
+		<!-- 设置连接池管理器 -->
+		<property name="connectionManager" ref="clientConnectionManager" />
+	</bean>
+
+	<!-- 声明httpclient -->
+	<!-- httpclient必须是多例的 -->
+	<bean id="httpClient" class="org.apache.http.impl.client.CloseableHttpClient"
+		factory-bean="clientBuilder" factory-method="build" scope="prototype" />
+
+	<!-- 声明Builder -->
+	<bean id="builder" class="org.apache.http.client.config.RequestConfig.Builder">
+		<!-- 创建连接的最长时间 -->
+		<property name="connectTimeout" value="${httpclient.connectTimeout}" />
+		<!-- 从连接池中获取到连接的最长时间 -->
+		<property name="connectionRequestTimeout" value="${httpclient.connectionRequestTimeout}" />
+		<!-- 数据传输的最长时间 -->
+		<property name="socketTimeout" value="${httpclient.socketTimeout}" />
+		<!-- 提交请求前测试连接是否可用 -->
+		<property name="staleConnectionCheckEnabled" value="${httpclient.staleConnectionCheckEnabled}" />
+	</bean>
+
+	<!-- 构建请求配置信息 -->
+	<bean id="requestConfig" class="org.apache.http.client.config.RequestConfig"
+		factory-bean="builder" factory-method="build" />
+
+	<!-- 配置清理无效连接 -->
+	   <!-- <bean class="com.edi.common.evictor.IdleConnectionEvictor"
+		init-method="start" destroy-method="shutdown" />  -->
+
+</beans>

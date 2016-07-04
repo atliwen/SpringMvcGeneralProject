@@ -1,4 +1,4 @@
-package com.edi.manage.controller.base;
+package com.edi.web.controller.base;
 
 import java.util.List;
 
@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edi.commcn.edi.bean.EasyUIResult;
-import com.edi.manage.pojo.BasePojo;
-import com.edi.manage.service.BaseService;
-import com.github.pagehelper.PageInfo;
+import com.edi.commcn.httpclientapi.bean.HttpResult;
+import com.edi.web.service.base.BaseService;
 
 /**
 * <p>Title: BaseComtroller </p>
@@ -22,11 +21,11 @@ import com.github.pagehelper.PageInfo;
 * @author 李文
 * @date   2016年7月4日 上午9:39:48 
 */
-public class BaseController<T extends BaseService, M extends BasePojo>
+public class BaseController<M>
 {
 
 	@Autowired
-	private T MService;
+	private BaseService<M> MService;
 
 	/**
 	 * 通过 ID 查询用户
@@ -53,37 +52,34 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	@RequestMapping(value = "all", method = RequestMethod.GET)
 	public ResponseEntity<List<M>> queryMList()
 	{
-		return ResponseEntity.ok(MService.queryAll());
+		try
+		{
+			return ResponseEntity.ok(MService.queryAll());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 
 	/**
-	 * 获取更具条件查询
-	 * @return
-	 */
-	@RequestMapping(value = "where", method = RequestMethod.GET)
-	public ResponseEntity<List<M>> queryMList(M m)
-	{
-		return ResponseEntity.ok(MService.queryListByWhere(m));
-	}
-
-	/**
-	 * 提供rest接口，分页查询商品信息 倒序 按照ID 
+	 * 提供rest接口，分页查询商品信息 倒序
 	 * 
 	 * @param page 当前页
 	 * @param rows 每页几条
 	 * @return 返回 http 状态为 200 时  fanh
 	 */
 
-	@RequestMapping(value = "pagedesc", method = RequestMethod.GET)
+	@RequestMapping(value = "page", method = RequestMethod.GET)
 	// 将 EasyUIResult 序列号为JSON
 	public ResponseEntity<EasyUIResult> queryItemList(@RequestParam("page") Integer page,
 			@RequestParam("rows") Integer rows, @RequestParam("order") String order)
 	{
 		try
 		{
-			PageInfo<M> pageInfo = this.MService.queryListByPageAndOrder(null, page, rows, order);
-			EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(), pageInfo.getList());
-
+			EasyUIResult easyUIResult = this.MService.queryListByPageAndOrder(null, page, rows,
+					order);
 			return ResponseEntity.ok(easyUIResult);
 		}
 		catch (Exception e)
@@ -101,12 +97,11 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteContentCategory(@RequestParam("id") Long id)
+	public ResponseEntity<HttpResult> deleteContentCategory(@RequestParam("id") Long id)
 	{
 		try
 		{
-			this.MService.deleteById(id);
-			return ResponseEntity.ok(null);
+			return ResponseEntity.ok(this.MService.deleteById(id));
 		}
 		catch (Exception e)
 		{
@@ -122,19 +117,18 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(M M)
+	public ResponseEntity<HttpResult> update(M M)
 	{
 
 		try
 		{
-			this.MService.updateByIdSelective(M);
+			return ResponseEntity.ok(this.MService.updateByIdSelective(M));
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
-		return ResponseEntity.ok(null);
 
 	}
 
@@ -144,12 +138,11 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<M> saveContentCategory(M M)
+	public ResponseEntity<HttpResult> saveContentCategory(M M)
 	{
 		try
 		{
-			this.MService.saveSelective(M);
-			return ResponseEntity.ok(M);
+			return ResponseEntity.ok(this.MService.saveSelective(M));
 		}
 		catch (Exception e)
 		{

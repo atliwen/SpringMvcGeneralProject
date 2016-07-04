@@ -1,6 +1,8 @@
 package com.edi.commcn.httpclientapi.service;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +36,31 @@ public class ApiService
 	// 如果容器中存在，就注入，否则就不注入
 	@Autowired(required = false)
 	private RequestConfig config;
+
+	/**
+	 * 带参数的get请求,如果返回状态码为200，则返回body，如果不为200，则返回null
+	 * @param url  
+	 * @param t
+	 * @return
+	 * @throws Exception
+	 */
+	public String doGet(String url, Object t) throws Exception
+	{
+		return doGet(url, getClassMap(t, new HashMap<String, Object>()));
+	}
+
+	/**
+	 * 带参数的get请求,如果返回状态码为200，则返回body，如果不为200，则返回null
+	 * @param url  
+	 * @param t
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public String doGet(String url, Object t, Map<String, Object> map) throws Exception
+	{
+		return doGet(url, getClassMap(t, map));
+	}
 
 	/**
 	 * 带参数的get请求,如果返回状态码为200，则返回body，如果不为200，则返回null
@@ -78,6 +105,32 @@ public class ApiService
 	public String doGet(String url) throws Exception
 	{
 		return this.doGet(url, null);
+	}
+
+	/**
+	 * 带参数的post请求
+	 * 
+	 * @param url
+	 * @param t
+	 * @return
+	 * @throws Exception
+	 */
+	public HttpResult doPost(String url, Object t) throws Exception
+	{
+		return doPost(url, getClassMap(t, new HashMap<String, Object>()));
+	}
+
+	/**
+	 * 带参数的post请求
+	 * 
+	 * @param url
+	 * @param t
+	 * @return
+	 * @throws Exception
+	 */
+	public HttpResult doPost(String url, Object t, Map<String, Object> map) throws Exception
+	{
+		return doPost(url, getClassMap(t, map));
 	}
 
 	/**
@@ -152,7 +205,33 @@ public class ApiService
 	 * 
 	 * @param url
 	 * @param map
-	 * @return04110065
+	 * @return 
+	 * @throws Exception
+	 */
+	public HttpResult doPut(String url, Object t) throws Exception
+	{
+		return doPut(url, getClassMap(t, new HashMap<String, Object>()));
+	}
+
+	/**
+	 * 带参数的http Put请求
+	 * 
+	 * @param url
+	 * @param map
+	 * @return 
+	 * @throws Exception
+	 */
+	public HttpResult doPut(String url, Object t, Map<String, Object> map) throws Exception
+	{
+		return doPut(url, getClassMap(t, map));
+	}
+
+	/**
+	 * 带参数的http Put请求
+	 * 
+	 * @param url
+	 * @param map
+	 * @return 
 	 * @throws Exception
 	 */
 	public HttpResult doPut(String url, Map<String, Object> map) throws Exception
@@ -192,7 +271,7 @@ public class ApiService
 		return this.doPut(url, null);
 	}
 
-	public String doDelete(String url) throws Exception
+	public HttpResult doDelete(String url) throws Exception
 	{
 		// 声明http Delete方法
 		HttpDelete httpDelete = new HttpDelete(url);
@@ -201,7 +280,26 @@ public class ApiService
 		// 发出请求
 		CloseableHttpResponse response = this.httpClient.execute(httpDelete);
 
-		return EntityUtils.toString(response.getEntity(), "UTF-8");
+		return new HttpResult(response.getStatusLine().getStatusCode(), EntityUtils.toString(
+				response.getEntity(), "UTF-8"));
 	}
 
+	// ----辅助方法
+	public Map<String, Object> getClassMap(Object t, Map<String, Object> map) throws Exception
+	{
+
+		// 获取t的字段
+		Field[] fields = t.getClass().getDeclaredFields();
+		for (Field field : fields)
+		{
+			// 设置为true，可以获取声明的私有字段的值
+			field.setAccessible(true);
+			if (field.get(t) != null)
+			{
+				// 非空的字段的值，加入到条件中
+				map.put(field.getName(), field.get(t));
+			}
+		}
+		return map;
+	}
 }

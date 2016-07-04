@@ -1,20 +1,20 @@
-ÓÐ¿Ó£¡£¡
+ï¿½Ð¿Ó£ï¿½ï¿½ï¿½
 
 targetProject="F:\MyProject\resources"   
-²»»á×Ô¶¯´´½¨ ÎÄ¼þ¼Ð
-µÃÊÖ¶¯´´½¨ÎÄ¼þ¼Ð
+ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¼ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 
-¿ÓµùµÄÊÇ ²»ÌáÊ¾£¡ É¶¶¼²»ÏÔÊ¾ Ò²²»±¨´í
+ï¿½Óµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ É¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
-½Ó×Å»¹ÓÐ¿Ó 
+ï¿½ï¿½ï¿½Å»ï¿½ï¿½Ð¿ï¿½ 
 SQL error codes for 'MySQL' found
 that corresponds to your MySQL server version for the right syntax to use near 'MYSQL' at line 1
 
 <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"></property>
-		<property name="basePackage" value="com.taotao.manage.mapper" /> 
+		<property name="basePackage" value="com.test.manage.mapper" /> 
 		<property name="properties">
 			<value>
 				mappers=tk.mybatis.mapper.common.Mapper
@@ -26,5 +26,5 @@ that corresponds to your MySQL server version for the right syntax to use near '
 
 
 
-IDENTITY=MYSQL ¿ÓµùµÄ Ç§ÍòµÃ¼ì²éÓÐÃ»ÓÐ¿Õ¸ñ
+IDENTITY=MYSQL ï¿½Óµï¿½ï¿½ Ç§ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð¿Õ¸ï¿½
 
