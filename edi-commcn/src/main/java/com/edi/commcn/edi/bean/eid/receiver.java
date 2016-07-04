@@ -1,6 +1,6 @@
-package com.edi.commcn.edi.bean;
+package com.edi.commcn.edi.bean.eid;
 
-public class sender
+public class receiver
 {
 	/**
 	 * 详细地址(丌要包含省市区\县) 

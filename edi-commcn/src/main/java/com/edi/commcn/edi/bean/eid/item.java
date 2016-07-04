@@ -1,4 +1,4 @@
-package com.edi.commcn.edi.bean;
+package com.edi.commcn.edi.bean.eid;
 
 public class item
 {
