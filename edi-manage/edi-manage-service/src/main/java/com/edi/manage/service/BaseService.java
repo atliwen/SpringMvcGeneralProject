@@ -115,16 +115,16 @@ public abstract class BaseService<T extends BasePojo>
 	 */
 	public void save(T t)
 	{
-		// if (t.getCreated() == null)
-		// {
-		// t.setCreated(new Date());
-		// // 业务上要求，更新时间和创建时间必须一直，如果new的话，很可能不一致，造成业务上的错误
-		// t.setUpdated(t.getCreated());
-		// }
-		// else
-		// {
-		// t.setUpdated(t.getCreated());
-		// }
+		if (t.getRecordtime() == null)
+		{
+			t.setRecordtime(new Date());
+			// 业务上要求，更新时间和创建时间必须一直，如果new的话，很可能不一致，造成业务上的错误
+			t.setUpdatetime(t.getRecordtime());
+		}
+		else
+		{
+			t.setUpdatetime(t.getRecordtime());
+		}
 		this.getMapper().insert(t);
 	}
 
