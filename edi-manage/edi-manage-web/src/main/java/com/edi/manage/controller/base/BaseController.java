@@ -61,7 +61,7 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	 * @return
 	 */
 	@RequestMapping(value = "where", method = RequestMethod.GET)
-	public ResponseEntity<List<M>> queryMList(M m)
+	public ResponseEntity<List<M>> queryMListWhere(M m)
 	{
 		return ResponseEntity.ok(MService.queryListByWhere(m));
 	}
@@ -76,7 +76,7 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 
 	@RequestMapping(value = "pagedesc", method = RequestMethod.GET)
 	// 将 EasyUIResult 序列号为JSON
-	public ResponseEntity<EasyUIResult> queryItemList(@RequestParam("page") Integer page,
+	public ResponseEntity<EasyUIResult> queryPageList(@RequestParam("page") Integer page,
 			@RequestParam("rows") Integer rows, @RequestParam("order") String order)
 	{
 		try
