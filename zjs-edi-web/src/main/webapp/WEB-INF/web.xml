@@ -47,7 +47,7 @@
 		<!-- contextConfigLocation指定 springmvc的全局配置文件 如果 contextConfigLocation不指定，默认找配置文件名称：servlet的name+"-servlet.xml" -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:/spring/edi-manage-servlet.xml</param-value>
+			<param-value>classpath:/spring/edi-web-servlet.xml</param-value>
 		</init-param>
 	</servlet>
 
