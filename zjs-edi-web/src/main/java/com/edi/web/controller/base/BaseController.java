@@ -50,7 +50,7 @@ public class BaseController<M>
 	 * @return
 	 */
 	@RequestMapping(value = "where", method = RequestMethod.GET)
-	public ResponseEntity<List<M>> queryMByid(M m)
+	public ResponseEntity<List<M>> queryMByClass(M m)
 	{
 		try
 		{
