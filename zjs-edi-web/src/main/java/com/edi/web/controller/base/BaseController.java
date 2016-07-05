@@ -91,7 +91,7 @@ public class BaseController<M>
 
 	@RequestMapping(value = "page", method = RequestMethod.GET)
 	// 将 EasyUIResult 序列号为JSON
-	public ResponseEntity<EasyUIResult> queryItemList(@RequestParam("page") Integer page,
+	public ResponseEntity<EasyUIResult> queryPageList(@RequestParam("page") Integer page,
 			@RequestParam("rows") Integer rows, @RequestParam("order") String order)
 	{
 		try
