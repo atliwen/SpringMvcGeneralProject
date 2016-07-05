@@ -1,4 +1,4 @@
-package com.edi.manage.service;
+package com.edi.manage.service.base;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
