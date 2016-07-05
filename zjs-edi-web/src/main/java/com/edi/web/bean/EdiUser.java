@@ -1,6 +1,6 @@
 package com.edi.web.bean;
 
-public class EdiUser
+public class EdiUser extends BasePojo
 {
 	/**
 	 * 用户名称
@@ -29,16 +29,19 @@ public class EdiUser
 	/**
 	 * EID 客户标识
 	 */
+
 	private String clientflag;
 
 	/**
 	 * EID 客户秘钥
 	 */
+
 	private String verifyseed;
 
 	/**
 	 * 分仓标识
 	 */
+
 	private String dataflag;
 
 	/**
