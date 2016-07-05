@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edi.commcn.edi.bean.EasyUIResult;
 import com.edi.manage.pojo.BasePojo;
-import com.edi.manage.service.BaseService;
+import com.edi.manage.service.base.BaseService;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -57,7 +57,7 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	}
 
 	/**
-	 * 获取更具条件查询
+	 * 获取更具条件查询    M 如果是个 空类型  会 查询所有 表数据 
 	 * @return
 	 */
 	@RequestMapping(value = "where", method = RequestMethod.GET)
