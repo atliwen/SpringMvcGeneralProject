@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import com.edi.commcn.edi.bean.EasyUIResult;
 import com.edi.commcn.httpclientapi.bean.HttpResult;
 import com.edi.commcn.httpclientapi.service.ApiService;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,6 +30,7 @@ public abstract class BaseService<T>
 		Type type = this.getClass().getGenericSuperclass();
 		ParameterizedType ptype = (ParameterizedType) type;
 		this.clazz = (Class<T>) ptype.getActualTypeArguments()[0];
+		ObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
 
 	@Value("${restful.url}")
@@ -40,13 +42,13 @@ public abstract class BaseService<T>
 	/**
 	 * 具体功能地址
 	 */
-	private String function;
+	public String function;
 
 	/**  
 	 * 设置具体功能地址  
-	 * @param function 具体功能地址  
+	 * 
 	 */
-	public abstract void setFunction(String function);
+	public abstract String getFunction();
 
 	/**
 	 * 根据主键查询
@@ -57,7 +59,7 @@ public abstract class BaseService<T>
 	 */
 	public T queryByID(Long id) throws Exception
 	{
-		String user = aipService.doGet(url + "/" + function + "/id");
+		String user = aipService.doGet(url + "/" + this.getFunction() + "/" + id);
 		return (T) ObjectMapper.readValue(user, clazz);
 	}
 
@@ -69,7 +71,7 @@ public abstract class BaseService<T>
 	 */
 	public List<T> queryAll() throws Exception
 	{
-		String user = aipService.doGet(url + "/" + function + "/all");
+		String user = aipService.doGet(url + "/" + this.getFunction() + "/all");
 		JavaType javaType = ObjectMapper.getTypeFactory()
 				.constructParametricType(List.class, clazz);
 		return (List<T>) ObjectMapper.readValue(user, clazz);
@@ -85,7 +87,7 @@ public abstract class BaseService<T>
 	 */
 	public List<T> queryListByWhere(T t) throws Exception
 	{
-		String user = aipService.doGet(url + "/" + function + "/where", t);
+		String user = aipService.doGet(url + "/" + this.getFunction() + "/where", t);
 		JavaType javaType = ObjectMapper.getTypeFactory()
 				.constructParametricType(List.class, clazz);
 		return (List<T>) ObjectMapper.readValue(user, clazz);
@@ -105,7 +107,7 @@ public abstract class BaseService<T>
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("page", page);
 		map.put("rows", rows);
-		String user = aipService.doGet(url + "/" + function + "/pagedesc", t, map);
+		String user = aipService.doGet(url + "/" + this.getFunction() + "/pagedesc", t, map);
 		return (EasyUIResult) ObjectMapper.readValue(user, EasyUIResult.class);
 
 	}
@@ -125,7 +127,7 @@ public abstract class BaseService<T>
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("page", page);
 		map.put("rows", rows);
-		String user = aipService.doGet(url + "/" + function + "/pagedesc", t, map);
+		String user = aipService.doGet(url + "/" + this.getFunction() + "/pagedesc", t, map);
 		return (EasyUIResult) ObjectMapper.readValue(user, EasyUIResult.class);
 
 	}
@@ -138,7 +140,7 @@ public abstract class BaseService<T>
 	 */
 	public HttpResult saveSelective(T t) throws Exception
 	{
-		return aipService.doPost(url + "/" + function, t);
+		return aipService.doPost(url + "/" + this.getFunction(), t);
 	}
 
 	/**
@@ -149,7 +151,7 @@ public abstract class BaseService<T>
 	 */
 	public HttpResult updateByIdSelective(T t) throws Exception
 	{
-		return aipService.doPut(url + "/" + function, t);
+		return aipService.doPut(url + "/" + this.getFunction(), t);
 	}
 
 	/**
@@ -160,7 +162,7 @@ public abstract class BaseService<T>
 	 */
 	public HttpResult deleteById(Long id) throws Exception
 	{
-		return aipService.doDelete(url + "/" + function + "?id=" + id);
+		return aipService.doDelete(url + "/" + this.getFunction() + "?id=" + id);
 	}
 
 }
