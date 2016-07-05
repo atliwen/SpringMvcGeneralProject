@@ -46,6 +46,24 @@ public class BaseController<M>
 	}
 
 	/**
+	 * 通过 条件 查询用户    M 如果是个 空类型  会 查询所有 表数据 
+	 * @return
+	 */
+	@RequestMapping(value = "where", method = RequestMethod.GET)
+	public ResponseEntity<List<M>> queryMByid(M m)
+	{
+		try
+		{
+			return ResponseEntity.ok(MService.queryListByWhere(m));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
+	}
+
+	/**
 	 * 获取所有的用户
 	 * @return
 	 */

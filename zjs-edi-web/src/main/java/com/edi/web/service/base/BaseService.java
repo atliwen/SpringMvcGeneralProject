@@ -2,6 +2,7 @@ package com.edi.web.service.base;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,9 +73,9 @@ public abstract class BaseService<T>
 	public List<T> queryAll() throws Exception
 	{
 		String user = aipService.doGet(url + "/" + this.getFunction() + "/all");
-		JavaType javaType = ObjectMapper.getTypeFactory()
-				.constructParametricType(List.class, clazz);
-		return (List<T>) ObjectMapper.readValue(user, clazz);
+		JavaType javaType = ObjectMapper.getTypeFactory().constructParametricType(ArrayList.class,
+				clazz);
+		return (List<T>) ObjectMapper.readValue(user, javaType);
 
 	}
 
@@ -88,9 +89,9 @@ public abstract class BaseService<T>
 	public List<T> queryListByWhere(T t) throws Exception
 	{
 		String user = aipService.doGet(url + "/" + this.getFunction() + "/where", t);
-		JavaType javaType = ObjectMapper.getTypeFactory()
-				.constructParametricType(List.class, clazz);
-		return (List<T>) ObjectMapper.readValue(user, clazz);
+		JavaType javaType = ObjectMapper.getTypeFactory().constructParametricType(ArrayList.class,
+				clazz);
+		return (List<T>) ObjectMapper.readValue(user, javaType);
 	}
 
 	/**
