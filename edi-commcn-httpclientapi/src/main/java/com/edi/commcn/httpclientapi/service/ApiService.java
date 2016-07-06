@@ -79,7 +79,8 @@ public class ApiService
 			// 遍历map，拼接请求属性
 			for (Map.Entry<String, Object> entry : map.entrySet())
 			{
-				uriBuilder.setParameter(entry.getKey(), entry.getValue().toString());
+				if (entry.getValue() == null) uriBuilder.setParameter(entry.getKey(), "");
+				else uriBuilder.setParameter(entry.getKey(), entry.getValue().toString());
 			}
 		}
 		// 声明http get请求
@@ -154,7 +155,8 @@ public class ApiService
 			// 遍历map，组装成form表单
 			for (Map.Entry<String, Object> entry : map.entrySet())
 			{
-				list.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
+				if (entry.getValue() == null) list.add(new BasicNameValuePair(entry.getKey(), ""));
+				else list.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
 			}
 			// 构造一个form表单式的实体
 			UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(list, "UTF-8");
@@ -245,7 +247,8 @@ public class ApiService
 			List<NameValuePair> list = new ArrayList<NameValuePair>();
 			for (Map.Entry<String, Object> entry : map.entrySet())
 			{
-				list.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
+				if (entry.getValue() == null) list.add(new BasicNameValuePair(entry.getKey(), ""));
+				else list.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
 			}
 			// 创建from表单
 			UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(list, "UTF-8");
