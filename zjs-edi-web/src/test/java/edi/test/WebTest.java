@@ -23,9 +23,8 @@ public class WebTest
 		context.setValidating(false);
 		context.load("classpath:spring/applicationContext*.xml");
 		context.refresh();
-		user = new UserTableController();
+		user = context.getBean(UserTableController.class);
 
-		// TODO SpringMVC 和 Spring 对bean 的管理 问题
 	}
 
 	/**
@@ -47,7 +46,7 @@ public class WebTest
 	public void Test_queryMByClass()
 	{
 		EdiUser eUser = new EdiUser();
-		eUser.setIp("1111");
+		eUser.setName("111");
 
 		ResponseEntity<List<EdiUser>> userEntity = user.queryMByClass(eUser);
 		List<EdiUser> list = userEntity.getBody();
@@ -55,7 +54,7 @@ public class WebTest
 	}
 
 	/**
-	 * ID  条件查询
+	 * 查询所有
 	 */
 	@Test
 	public void Test_queryMList()
@@ -71,9 +70,9 @@ public class WebTest
 	@Test
 	public void Test_queryItemList()
 	{
-		ResponseEntity<EasyUIResult> easyUIResult = user.queryPageList(1, 10, null);
+		ResponseEntity<EasyUIResult> easyUIResult = user.queryPageList(2, 10, null);
 		EasyUIResult e = easyUIResult.getBody();
-		System.out.println(e.getTotal());
+		System.out.println(e.getRows().size());
 	}
 
 	/**
@@ -82,7 +81,7 @@ public class WebTest
 	@Test
 	public void Test_deleteContentCategory()
 	{
-		ResponseEntity<HttpResult> reseEntity = user.deleteContentCategory(1L);
+		ResponseEntity<HttpResult> reseEntity = user.deleteContentCategory(2L);
 		HttpResult e = reseEntity.getBody();
 		System.out.println(e.getCode());
 	}
@@ -94,7 +93,7 @@ public class WebTest
 	public void Test_update()
 	{
 		EdiUser ediUser = new EdiUser();
-		ediUser.setId(1L);
+		ediUser.setId(3L);
 		ediUser.setIp("aaaa");
 		ResponseEntity<HttpResult> reseEntity = user.update(ediUser);
 		HttpResult e = reseEntity.getBody();

@@ -128,6 +128,7 @@ public abstract class BaseService<T>
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("page", page);
 		map.put("rows", rows);
+		map.put("order", order);
 		String user = aipService.doGet(url + "/" + this.getFunction() + "/pagedesc", t, map);
 		return (EasyUIResult) ObjectMapper.readValue(user, EasyUIResult.class);
 
