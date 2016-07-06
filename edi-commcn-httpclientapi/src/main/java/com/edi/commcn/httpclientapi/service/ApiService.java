@@ -288,6 +288,7 @@ public class ApiService
 	public Map<String, Object> getClassMap(Object t, Map<String, Object> map) throws Exception
 	{
 
+		if (t == null) return map;
 		// 获取t的字段
 		Field[] fields = t.getClass().getDeclaredFields();
 		for (Field field : fields)
