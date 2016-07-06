@@ -13,7 +13,7 @@
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
+				<artifactId>spring-context</artifactId>
 		</dependency>
 		  
 		 
