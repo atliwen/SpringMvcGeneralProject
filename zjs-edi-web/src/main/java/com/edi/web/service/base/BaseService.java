@@ -146,6 +146,18 @@ public abstract class BaseService<T>
 	}
 
 	/**
+	 * 保存
+	 * 
+	 * @param t
+	 * @throws Exception 
+	 */
+	public HttpResult saveSelective(Map<String, String[]> map) throws Exception
+	{
+
+		return aipService.doPostRequest(url + "/" + this.getFunction(), map);
+	}
+
+	/**
 	 * 更新
 	 * 
 	 * @param t
