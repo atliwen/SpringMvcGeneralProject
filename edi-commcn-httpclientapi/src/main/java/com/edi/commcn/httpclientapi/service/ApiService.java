@@ -3,8 +3,11 @@ package com.edi.commcn.httpclientapi.service;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
@@ -180,6 +183,28 @@ public class ApiService
 	public HttpResult doPost(String url) throws Exception
 	{
 		return this.doPost(url, null);
+	}
+
+	/**
+	 * 带参数的post请求 
+	 * 
+	 * @param url
+	 * @param t
+	 * @return
+	 * @throws Exception
+	 */
+	public HttpResult doPostRequest(String url, Map<String, String[]> map) throws Exception
+	{
+		Map<String, Object> mapa = new HashMap<String, Object>();
+		Set<Entry<String, String[]>> set = map.entrySet();
+		Iterator<Entry<String, String[]>> it = set.iterator();
+		while (it.hasNext())
+		{
+			Entry<String, String[]> entry = it.next();
+			System.out.println("KEY:" + entry.getKey());
+			mapa.put(entry.getKey(), entry.getValue()[0]);
+		}
+		return doPost(url, mapa);
 	}
 
 	public HttpResult doPostJson(String url, String json) throws Exception
