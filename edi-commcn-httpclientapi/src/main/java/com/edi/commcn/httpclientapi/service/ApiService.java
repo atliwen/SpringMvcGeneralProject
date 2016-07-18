@@ -108,6 +108,7 @@ public class ApiService
 	 */
 	public String doGet(String url) throws Exception
 	{
+		System.out.println(url);
 		return this.doGet(url, null);
 	}
 

@@ -61,6 +61,7 @@ public abstract class BaseService<T>
 	public T queryByID(Long id) throws Exception
 	{
 		String user = aipService.doGet(url + "/" + this.getFunction() + "/" + id);
+		System.out.println(user);
 		return (T) ObjectMapper.readValue(user, clazz);
 	}
 

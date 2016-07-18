@@ -31,7 +31,9 @@
 		<rocketmq-all.version>3.2.6</rocketmq-all.version>
 		<github.pagehelper.version>3.4.2</github.pagehelper.version>
 		<github.jsqlparser.version>0.9.4</github.jsqlparser.version>
-
+		<quartz.version>2.2.3</quartz.version>
+		
+		
 	</properties>
 
 
@@ -96,7 +98,7 @@
 				<artifactId>jsqlparser</artifactId>
 				<version>${github.jsqlparser.version}</version>
 			</dependency>
-			 
+
 
 			<!-- MySql -->
 			<dependency>
@@ -194,6 +196,14 @@
 				<version>${rocketmq-all.version}</version>
 				<type>pom</type>
 			</dependency>
+
+			<!-- 计划任务 quartz -->
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+
 
 			<!-- 图片上传 -->
 			<dependency>
