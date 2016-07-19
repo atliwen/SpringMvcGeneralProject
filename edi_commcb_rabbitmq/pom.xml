@@ -1,35 +1,31 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.zjs.edi.commcn.rabbitmq</groupId>
-  <artifactId>edi_commcb_rabbitmq</artifactId>
-  <parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.zjs.edi.commcn.rabbitmq</groupId>
+	<artifactId>edi_commcb_rabbitmq</artifactId>
+	<parent>
 		<groupId>com.edi.parent</groupId>
 		<artifactId>edi-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-  
-   
-  
-  
-  
-  
-  <dependencies>
+
+	<dependencies>
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
 			<artifactId>amqp-client</artifactId>
-			</dependency>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId> 
-			</dependency>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			</dependency> 
-		<!-- 使用新版本  旧的不支持 Spring 4.2 -->
+		</dependency>
+		<!-- 使用新版本 旧的不支持 Spring 4.2 -->
 		<dependency>
-	        <groupId>org.springframework.amqp</groupId>
-	        <artifactId>spring-rabbit</artifactId>
-	        </dependency> 
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
 	</dependencies>
 </project>
