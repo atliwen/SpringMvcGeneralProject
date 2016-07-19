@@ -32,8 +32,8 @@
 		<github.pagehelper.version>3.4.2</github.pagehelper.version>
 		<github.jsqlparser.version>0.9.4</github.jsqlparser.version>
 		<quartz.version>2.2.3</quartz.version>
-		
-		
+		<rabbitmq.amqp.client.version>3.4.1</rabbitmq.amqp.client.version>
+		<spring.rabbit>1.5.6.RELEASE</spring.rabbit>
 	</properties>
 
 
@@ -203,7 +203,17 @@
 				<artifactId>quartz</artifactId>
 				<version>${quartz.version}</version>
 			</dependency>
-
+			<!-- Rabbitmq -->
+			<dependency>
+				<groupId>com.rabbitmq</groupId>
+				<artifactId>amqp-client</artifactId>
+				<version>${rabbitmq.amqp.client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.amqp</groupId>
+				<artifactId>spring-rabbit</artifactId>
+				<version>${spring.rabbit}</version>
+			</dependency>
 
 			<!-- 图片上传 -->
 			<dependency>
