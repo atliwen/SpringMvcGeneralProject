@@ -28,10 +28,9 @@
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>
-		<property name="suffix" value=".jsp"></property>
-
+		<property name="suffix" value=".jsp"></property> 
 	</bean>
-
+ 
 	<!-- 文件上传解析器 -->
 	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
 		<property name="defaultEncoding" value="utf-8" /> <property name="maxUploadSize" 
