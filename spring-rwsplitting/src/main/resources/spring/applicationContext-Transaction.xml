@@ -13,6 +13,9 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd ">
 
+
+	<!-- 没有使用第三方库 该读写分离实现为 动态数据源 通过事物 AOP 来处理 -->
+
 	<!-- 定义事务管理器 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -37,18 +40,19 @@
 		</tx:attributes>
 	</tx:advice>
 
-	 
+
 	<!-- 定义AOP切面处理器 -->
 	<bean class="com.zjs.edi.spring.datasource.DataSourceAspect" id="dataSourceAspect">
 		<!-- 指定事务策略 -->
-		<property name="txAdvice" ref="txAdvice"/>
+		<property name="txAdvice" ref="txAdvice" />
 		<!-- 指定slave方法的前缀（非必须） -->
-		<property name="slaveMethodStart" value="query,find,get"/>
+		<property name="slaveMethodStart" value="query,find,get" />
 	</bean>
-	
+
 	<!-- 定义AOP切面处理器 -->
-	<!-- <bean class="com.zjs.edi.spring.datasource.DataSourceAspectOld" id="dataSourceAspect" /> -->
-	
+	<!-- <bean class="com.zjs.edi.spring.datasource.DataSourceAspectOld" id="dataSourceAspect" 
+		/> -->
+
 	<aop:config>
 		<!-- 定义切面，所有的service的所有方法 -->
 		<aop:pointcut id="txPointcut"
