@@ -11,10 +11,8 @@
 		http://www.springframework.org/schema/aop 
 		http://www.springframework.org/schema/aop/spring-aop-3.1.xsd 
 		http://www.springframework.org/schema/tx 
-		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd ">
-
-
-
+		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd "> 
+		
 	<!-- 加载配置文件 使用注解模式 -->
 	<context:property-placeholder location="classpath*:*.properties" />
 	<!-- 类扫描解析器 将改级 下所有使用Spring 标签的 类 加入spring管理 -->
@@ -45,7 +43,7 @@
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice"
 			pointcut="execution(* com.edi.manage.service.*.*(..))" />
-	</aop:config>
+	</aop:config> 
 
 </beans>
 		

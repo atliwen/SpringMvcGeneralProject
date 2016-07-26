@@ -1,5 +1,7 @@
 package com.edi.manage.controller;
 
+import io.swagger.annotations.ApiImplicitParam;
+
 import java.util.Date;
 
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ public class EdiUserController extends BaseController<EdiUserService, EdiUser>
 	 */
 	@Override
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	@ApiImplicitParam(name = "id", paramType = "path", value = "用户ID", required = true, dataType = "Long")
 	public ResponseEntity<EdiUser> queryMByid(@PathVariable("id") Long id)
 	{
 		EdiUser user = new EdiUser();

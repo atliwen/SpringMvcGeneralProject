@@ -1,5 +1,9 @@
 package com.edi.manage.controller.base;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +33,14 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	private T MService;
 
 	/**
-	 * 通过 ID 查询用户
+	 * 通过 ID 查询
 	 * @return
 	 */
+	@ApiOperation(value = "通过 ID 查询", notes = "通用模板")
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public ResponseEntity<M> queryMByid(@PathVariable("id") Long id)
 	{
+
 		try
 		{
 			return ResponseEntity.ok((M) MService.queryByID(id));
@@ -47,9 +53,10 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	}
 
 	/**
-	 * 获取所有的用户
+	 * 获取所有的 数据
 	 * @return
 	 */
+	@ApiOperation(value = "获取所有列表", notes = "通用模板")
 	@RequestMapping(value = "all", method = RequestMethod.GET)
 	public ResponseEntity<List<M>> queryMList()
 	{
@@ -60,6 +67,7 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	 * 获取更具条件查询    M 如果是个 空类型  会 查询所有 表数据 
 	 * @return
 	 */
+	@ApiOperation(value = "更具条件查询  ", notes = " 如果是个 空类型  会 查询所有 表数据   通用模板")
 	@RequestMapping(value = "where", method = RequestMethod.GET)
 	public ResponseEntity<List<M>> queryMListWhere(M m)
 	{
@@ -73,14 +81,23 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	 * @param rows 每页几条
 	 * @return 返回 http 状态为 200 时  fanh
 	 */
-
+	@ApiOperation(value = "分页查询", notes = "通用模板")
 	@RequestMapping(value = "pagedesc", method = RequestMethod.GET)
+	@ApiImplicitParams(
+	{
+			@ApiImplicitParam(name = "page", value = "当前页", required = true, dataType = "Integer"),
+			@ApiImplicitParam(name = "rows", value = "每页几条", required = true, dataType = "Integer"),
+			@ApiImplicitParam(name = "order", value = "排序默认 按照ID  ", required = false, dataType = "String") }
+
+	)
 	// 将 EasyUIResult 序列号为JSON
 	public ResponseEntity<EasyUIResult> queryPageList(@RequestParam("page") Integer page,
-			@RequestParam("rows") Integer rows, @RequestParam("order") String order)
+			@RequestParam("rows") Integer rows,
+			@RequestParam(value = "order", defaultValue = "") String order)
 	{
 		try
 		{
+			System.out.println();
 			PageInfo<M> pageInfo = this.MService.queryListByPageAndOrder(null, page, rows, order);
 			EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(), pageInfo.getList());
 
@@ -100,6 +117,7 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	 * @param TbContentCategory
 	 * @return
 	 */
+	@ApiOperation(value = "通过主键ID 删除", notes = "通用模板")
 	@RequestMapping(method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteContentCategory(@RequestParam("id") Long id)
 	{
@@ -121,6 +139,7 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	 * @param TbContentCategory
 	 * @return
 	 */
+	@ApiOperation(value = "更新", notes = "通用模板")
 	@RequestMapping(method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(M M)
 	{
@@ -143,6 +162,7 @@ public class BaseController<T extends BaseService, M extends BasePojo>
 	 * @param TbContentCategory
 	 * @return
 	 */
+	@ApiOperation(value = "新增", notes = "通用模板")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<M> saveContentCategory(M M)
 	{
