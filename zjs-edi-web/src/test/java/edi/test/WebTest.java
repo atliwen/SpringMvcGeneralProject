@@ -70,7 +70,18 @@ public class WebTest
 	@Test
 	public void Test_queryItemList()
 	{
-		ResponseEntity<EasyUIResult> easyUIResult = user.queryPageList(2, 10, null);
+		ResponseEntity<EasyUIResult> easyUIResult = user.queryPageList(2, 10, "xid");
+		EasyUIResult e = easyUIResult.getBody();
+		System.out.println(e.getRows().size());
+	}
+
+	/**
+	 * ID  分页查询 倒叙
+	 */
+	@Test
+	public void Test_queryOrderList()
+	{
+		ResponseEntity<EasyUIResult> easyUIResult = user.queryPageList(2, 10, "");
 		EasyUIResult e = easyUIResult.getBody();
 		System.out.println(e.getRows().size());
 	}

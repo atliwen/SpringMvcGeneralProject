@@ -106,12 +106,7 @@ public abstract class BaseService<T>
 	 */
 	public EasyUIResult queryPageByWhere(T t, Integer page, Integer rows) throws Exception
 	{
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("page", page);
-		map.put("rows", rows);
-		String user = aipService.doGet(url + "/" + this.getFunction() + "/pagedesc", t, map);
-		return (EasyUIResult) ObjectMapper.readValue(user, EasyUIResult.class);
-
+		return queryListByPageAndOrder(t, page, rows, null);
 	}
 
 	/**
