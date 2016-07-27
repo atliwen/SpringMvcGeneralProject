@@ -44,9 +44,9 @@ public class MySwaggerConfig
 		// .paths(PathSelectors.any()).build();
 		//
 
-		return new Docket(DocumentationType.SWAGGER_2).groupName("userTest").pathMapping("/rest")
+		return new Docket(DocumentationType.SWAGGER_2).groupName("Test").pathMapping("/rest")
 				.apiInfo(apiInfo()).select()
-				.apis(RequestHandlerSelectors.basePackage("com.edi.manage"))
+				.apis(RequestHandlerSelectors.basePackage("com.edi.manage.springfox"))
 				.paths(PathSelectors.any()).build();
 
 	}
@@ -54,7 +54,7 @@ public class MySwaggerConfig
 	@Bean
 	public Docket SpringMvcPlugin()
 	{
-		return new Docket(DocumentationType.SWAGGER_2).groupName("web").pathMapping("/rest")
+		return new Docket(DocumentationType.SWAGGER_2).groupName("controller").pathMapping("/rest")
 				.apiInfo(apiInfo()).select()
 				.apis(RequestHandlerSelectors.basePackage("com.edi.manage.controller"))
 				.paths(PathSelectors.any()).build();
