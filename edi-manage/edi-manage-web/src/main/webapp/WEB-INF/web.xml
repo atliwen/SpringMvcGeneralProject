@@ -8,7 +8,7 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/applicationContext*.xml</param-value>
+		<param-value>classpath:spring/applicationContext*.xml,classpath:*.xml</param-value>
 	</context-param>
 
 	<!-- spirng -->
@@ -53,19 +53,29 @@
 
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
+		<url-pattern>/swagger-resources/configuration/security</url-pattern>
 	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>/v2/api-docs</url-pattern>
+		<url-pattern>/swagger-resources/configuration/ui</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/swagger-resources</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/v2/api-docs</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>swagger-ui.html</welcome-file>
 	</welcome-file-list>
 
 

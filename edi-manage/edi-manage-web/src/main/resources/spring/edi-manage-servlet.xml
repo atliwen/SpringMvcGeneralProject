@@ -24,13 +24,13 @@
 	</mvc:annotation-driven>
 	<!-- 指定扫描包 -->
 	<context:component-scan base-package="com.edi.manage.controller" />
-	<!-- 视图解析器 -->
-	<bean
+	  <!-- 视图解析器 -->
+	<!--<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>
 
-	</bean>
+	</bean> -->
 
 	<!-- 文件上传解析器 -->
 	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 

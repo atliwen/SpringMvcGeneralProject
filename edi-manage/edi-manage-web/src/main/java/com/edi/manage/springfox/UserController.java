@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.edi.manage.pojo.User;
-
 @RestController
 @RequestMapping(value = "/users")
 public class UserController
@@ -36,7 +34,7 @@ public class UserController
 	}
 
 	@ApiOperation(value = "创建用户", notes = "根据User对象创建用户")
-	@ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
+	@ApiImplicitParam(name = "user", value = "用户实体user", required = true, dataType = "User")
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public String postUser(@RequestBody User user)
 	{

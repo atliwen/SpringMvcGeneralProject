@@ -44,10 +44,20 @@ public class MySwaggerConfig
 		// .paths(PathSelectors.any()).build();
 		//
 
-		return new Docket(DocumentationType.SWAGGER_2).pathMapping("/rest").apiInfo(apiInfo())
-				.select().apis(RequestHandlerSelectors.basePackage("com.edi.manage"))
+		return new Docket(DocumentationType.SWAGGER_2).groupName("userTest").pathMapping("/rest")
+				.apiInfo(apiInfo()).select()
+				.apis(RequestHandlerSelectors.basePackage("com.edi.manage"))
 				.paths(PathSelectors.any()).build();
 
+	}
+
+	@Bean
+	public Docket SpringMvcPlugin()
+	{
+		return new Docket(DocumentationType.SWAGGER_2).groupName("web").pathMapping("/rest")
+				.apiInfo(apiInfo()).select()
+				.apis(RequestHandlerSelectors.basePackage("com.edi.manage.controller"))
+				.paths(PathSelectors.any()).build();
 	}
 
 	/**
@@ -59,5 +69,19 @@ public class MySwaggerConfig
 		return new ApiInfoBuilder().title("标题 ").description("描述").termsOfServiceUrl("Url的服务条款")
 				.contact("联系方式 ").version("版本").build();
 	}
+
+	// /**
+	// * 安全信息 请求的时候 会带入 添加拦截器可以进行安全
+	// * @return
+	// */
+	// @Bean
+	// public SecurityConfiguration securityInfo()
+	// {
+	// return new SecurityConfiguration("abc", "123", "pets", "petstore", "123",
+	// ApiKeyVehicle.HEADER, "", ",");
+	//
+	// // return new SecurityConfiguration(clientId, clientSecret, realm,
+	// // appName, apiKeyValue, apiKeyVehicle, apiKeyName, scopeSeparator)
+	// }
 
 }

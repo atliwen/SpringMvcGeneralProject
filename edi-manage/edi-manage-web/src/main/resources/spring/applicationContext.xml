@@ -43,7 +43,7 @@
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice"
 			pointcut="execution(* com.edi.manage.service.*.*(..))" />
-	</aop:config> 
+	</aop:config>  
 
 </beans>
 		
