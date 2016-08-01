@@ -7,11 +7,11 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- 构建连接池配置信息 -->
+	<!-- 构建连接池配置信息 --> 
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<!-- 设置最大连接数 -->
 		<property name="maxTotal" value="${redis.maxTotal}" />
-	</bean>
+	</bean> 
 
 	<!-- 定义集群连接池 -->
 	<bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool"
