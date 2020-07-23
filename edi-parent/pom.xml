@@ -31,7 +31,7 @@
 		<rocketmq-all.version>3.2.6</rocketmq-all.version>
 		<github.pagehelper.version>3.4.2</github.pagehelper.version>
 		<github.jsqlparser.version>0.9.4</github.jsqlparser.version>
-		<quartz.version>2.2.3</quartz.version>
+		<quartz.version>2.3.2</quartz.version>
 		<rabbitmq.amqp.client.version>3.4.1</rabbitmq.amqp.client.version>
 		<spring.rabbit>1.5.6.RELEASE</spring.rabbit>
 		<aspectjrt.version>1.8.6</aspectjrt.version>
